@@ -1,33 +1,39 @@
-// "use client";
-// import React, { createContext, useState, useEffect } from "react";
+"use client";
+import React, { createContext, useState, useEffect, useCallback } from "react";
+import { useDebouncedValue } from "@/hooks/debounce";
 
-// const ApiContext = createContext();
+export const ApiContext = createContext();
 
-// const ApiProvider = ({ children }) => {
-//   const [value, setValue] = useState("FragranceX");
-//   const [data, setData] = useState([]);
-//   const [loading, setLoading] = useState(false);
+export const ApiProvider = ({ children }) => {
+    const [query, setQuery] = useState("");
+    const [value, setValue] = useState("FragranceX");
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
+  
+    const debouncedSearch = useDebouncedValue(query, 2000);
+    const baseUrl = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
+  
+    const fetchData = useCallback (async () => {
+      try {
+        setLoading(true);
+        const url = `${baseUrl}/products/public/catalog?supplier=${value}&first=0&last=50&search=${debouncedSearch}`;
+        const allList = await fetch(url);
+        const response = await allList.json();
+        console.log(response);
+        setData(response);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    },[value, debouncedSearch]);
 
-//   const baseUrl = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
-//   const url = `${baseUrl}/products/public/catalog?supplier=${value}&first=0&last=50`;
 
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         setLoading(true);
-//         const allList = await fetch(url);
-//         const response = await allList.json();
-//         console.log(response);
-//         setData(response);
-//       } catch (error) {
-//         console.log(error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-//     fetchData();
-//   }, [value]);
-//   return <ApiContext.Provider value={{data, loading, value, setValue}}>{children}</ApiContext.Provider>;
-// };
+    useEffect(() => {
+      fetchData();
+    }, [fetchData]);
+    
+  return <ApiContext.Provider value={{data, loading, query, setQuery, value, setValue,  }}>{children}</ApiContext.Provider>;
+};
 
-// export { ApiContext, ApiProvider };
+

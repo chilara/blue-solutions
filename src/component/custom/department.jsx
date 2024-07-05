@@ -1,14 +1,14 @@
 "use client";
 import { CircularProgress } from "@chakra-ui/react";
-// import { ApiContext } from "@/context/apiContext";
-// import { useContext } from "react";
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
+import Image from "next/image";
+import { ApiContext } from "@/context/apiContext";
 
-const Department = ({ data, loading, value, setValue }) => {
-  // const { data, loading, value, setValue } = useContext(ApiContext)
+const Department = () => {
 
+  const { data, loading, value, setValue } = useContext(ApiContext);
   return (
-    <div className="flex flex-col gap-4 p-10">
+    <div className="flex flex-col gap-4 p-10" style={{ padding: "2.5rem" }}>
       <div
         style={{
           width: "100%",
@@ -175,7 +175,24 @@ const Department = ({ data, loading, value, setValue }) => {
         ) : (
           <div>
             {data.length == 0 ? (
-              <p>no data found</p>
+              <div
+                className="flex flex-col items-center p-12 mt-14"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  marginTop: "5rem",
+                  padding: "3rem",
+                }}
+              >
+                <Image
+                  src="/empty-pack.svg"
+                  alt="This represents no data found"
+                  width={150}
+                  height={150}
+                />
+                <p className="mt-4">No data found</p>
+              </div>
             ) : (
               data.map((item, index) => (
                 <div

@@ -1,11 +1,10 @@
-
 import Image from "next/image";
-import "../../app/globals.css"
+import "../../app/globals.css";
+import { ApiContext } from "@/context/apiContext";
+import React, {useContext} from "react";
 
-
-const Navbar = ({query, setQuery}) => {
-
- 
+const Navbar = () => {
+  const { query, setQuery } = useContext(ApiContext);
 
   return (
     <div
@@ -14,15 +13,18 @@ const Navbar = ({query, setQuery}) => {
         padding: "16px 20px",
         borderBottom: "1px solid #E6EAEE",
         gap: "6rem",
-        display:"flex",
-        width:"100%"
-        
+        display: "flex",
+        width: "100%",
       }}
     >
       <Image src={"/logo.svg"} alt="" width={204} height={86} />
       <div
         className="flex items-center"
-        style={{ justifyContent: "space-between", width: "1188px", display:"flex" }}
+        style={{
+          justifyContent: "space-between",
+          width: "1188px",
+          display: "flex",
+        }}
       >
         <div
           className=" flex items-center justify-center bg-gray-100"
@@ -33,7 +35,7 @@ const Navbar = ({query, setQuery}) => {
             display: "flex",
             gap: "5px",
             width: "264px",
-            display:"flex"
+            display: "flex",
           }}
         >
           <Image src={"/search.svg"} alt="" width={15} height={15} />
@@ -42,13 +44,19 @@ const Navbar = ({query, setQuery}) => {
             value={query}
             // class="w-64 border placeholder-[#4f5867] border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             placeholder="Search by patients..."
-            onChange={(e)=>setQuery(e.target.value)}
-            style={{ fontSize: "12px", color: "#4f5867", outlineStyle: "none" }}
+            onChange={(e) => setQuery(e.target.value)}
+            style={{ fontSize: "12px", color: "#4f5867", outlineStyle: "none", backgroundColor:"transparent" }}
           />
         </div>
         <div
           className="flex items-center"
-          style={{ width: "155px", gap: "10px", display:"flex", justifyContent:"space-between", alignItems:"center" }}
+          style={{
+            width: "155px",
+            gap: "10px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
         >
           <Image src={"/notification.svg"} alt="" width={24} height={24} />
           <Image src={"/avatar.svg"} alt="" width={37} height={36} />
