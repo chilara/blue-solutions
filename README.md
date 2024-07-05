@@ -1,36 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# WELCOME! 
 
-## Getting Started
+I implemented modular programming while translating the given mock up design into actual code and integrated it with an API using API Context state management.
 
-First, run the development server:
+With Context API, I was able store data at the top level of the component tree and made it available to all other components that need it without passing props. This helps to prevent "props drilling" and makes my code easier to read and maintain.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+I created a context object using the createContext function from the react library. This context object holds the data that I want to share across the application.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+After creating a context object, I wrapped the components that need access to the shared data with a Provider component. The Provider component accepts a "value" prop that holds the shared data, and any component that is a child of the Provider component can access that shared data.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+To consume the context in other components. I used the "useContext" hook from React.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Technologies Used
 
-## Learn More
+- Next.js
+- React Context API
+- Chakra UI
+- Git
 
-To learn more about Next.js, take a look at the following resources:
+## Author
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Chisom Timothy Oguine
