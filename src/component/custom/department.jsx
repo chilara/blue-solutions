@@ -1,17 +1,14 @@
 "use client";
 import { CircularProgress } from "@chakra-ui/react";
-import { ApiContext } from "@/context/apiContext";
-import { useContext } from "react";
+// import { ApiContext } from "@/context/apiContext";
+// import { useContext } from "react";
+import React, { useState, useEffect } from "react";
 
-
-
-const Department = () => {
-  const { data, loading, value, setValue } = useContext(ApiContext)
-
-
+const Department = ({ data, loading, value, setValue }) => {
+  // const { data, loading, value, setValue } = useContext(ApiContext)
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 p-10">
       <div
         style={{
           width: "100%",
@@ -177,95 +174,103 @@ const Department = () => {
           />
         ) : (
           <div>
-            {data.map((item, index) => (
-              <div
-                key={index}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  boxShadow: "0px 1px 0px 0px #EDEDF2",
-                  padding: "20px 0",
-                }}
-              >
+            {data.length == 0 ? (
+              <p>no data found</p>
+            ) : (
+              data.map((item, index) => (
                 <div
+                  key={index}
                   style={{
                     display: "flex",
-                    gap: "9px",
+                    justifyContent: "space-between",
                     alignItems: "center",
-                    width: "5%",
+                    boxShadow: "0px 1px 0px 0px #EDEDF2",
+                    padding: "20px 0",
                   }}
                 >
-                  <input
-                    type="checkbox"
-                    style={{ width: "15px", height: "15px" }}
-                  />
-                  <p
-                    className="text-xml font-semibold mb-2"
-                    style={{ fontSize: "12px" }}
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "9px",
+                      alignItems: "center",
+                      width: "5%",
+                    }}
                   >
-                    {index + 1}.
+                    <input
+                      type="checkbox"
+                      style={{ width: "15px", height: "15px" }}
+                    />
+                    <p
+                      className="text-xml font-semibold mb-2"
+                      style={{ fontSize: "12px" }}
+                    >
+                      {index + 1}.
+                    </p>
+                  </div>
+                  <div style={{ width: "7%" }}>
+                    <img src={item.Image_1} width={40} height={40} />
+                  </div>
+
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      width: "5%",
+                      textAlign: "left",
+                      width: "10%",
+                    }}
+                  >
+                    {item.SKU}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      width: "5%",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      width: "10%",
+                      textAlign: "left",
+                    }}
+                  >
+                    {item.Name || "N/A"}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      width: "10%",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {item.Title}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      width: "10%",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {item.Description}
+                  </p>
+                  <p style={{ fontSize: "12px", width: "10%" }}>
+                    {item.Brand || "N/A"}
+                  </p>
+                  <p style={{ fontSize: "12px", width: "10%" }}>
+                    {item["Cost Price"]}
+                  </p>
+                  <p style={{ fontSize: "12px", width: "10%" }}>
+                    {item.Quantity}
+                  </p>
+                  <p style={{ fontSize: "12px", width: "10%" }}>
+                    {item.size || "N/A"}
                   </p>
                 </div>
-                <div style={{ width: "7%" }}>
-                  <img src={item.Image_1} width={40} height={40} />
-                </div>
-
-                <p
-                  style={{
-                    fontSize: "12px",
-                    width: "5%",
-                    textAlign: "left",
-                    width: "10%",
-                  }}
-                >
-                  {item.SKU}
-                </p>
-                <p
-                  style={{
-                    fontSize: "12px",
-                    width: "5%",
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    width: "10%",
-                    textAlign: "left",
-                  }}
-                >
-                  {item.Name}
-                </p>
-                <p
-                  style={{
-                    fontSize: "12px",
-                    width: "10%",
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  {item.Title}
-                </p>
-                <p
-                  style={{
-                    fontSize: "12px",
-                    width: "10%",
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  {item.Description}
-                </p>
-                <p style={{ fontSize: "12px", width: "10%" }}>{item.Brand}</p>
-                <p style={{ fontSize: "12px", width: "10%" }}>
-                  {item["Cost Price"]}
-                </p>
-                <p style={{ fontSize: "12px", width: "10%" }}>
-                  {item.Quantity}
-                </p>
-                <p style={{ fontSize: "12px", width: "10%" }}>{item.size}</p>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         )}
       </div>

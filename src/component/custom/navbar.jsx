@@ -1,8 +1,12 @@
-import React from "react";
+
 import Image from "next/image";
 import "../../app/globals.css"
 
-const Navbar = () => {
+
+const Navbar = ({query, setQuery}) => {
+
+ 
+
   return (
     <div
       className="flex items-center border-b border-customGray h-32 "
@@ -20,20 +24,6 @@ const Navbar = () => {
         className="flex items-center"
         style={{ justifyContent: "space-between", width: "1188px", display:"flex" }}
       >
-        {/* <div
-          className="bg-white flex items-center"
-          style={{
-            border: "1px solid var(--Border-bd-dark, #DADAE7)",
-            padding: "8px 20px",
-            borderRadius: "8px",
-            display:"flex",
-            gap:"5px",
-            width:"264px"
-          }}
-        >
-          <Image src={"/search.svg"} alt="" width={15} height={15} />
-          <p style={{fontSize:"12px", color:"#4f5867"}}>Search by patients...</p>
-        </div> */}
         <div
           className=" flex items-center justify-center bg-gray-100"
           style={{
@@ -49,8 +39,10 @@ const Navbar = () => {
           <Image src={"/search.svg"} alt="" width={15} height={15} />
           <input
             type="text"
+            value={query}
             // class="w-64 border placeholder-[#4f5867] border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             placeholder="Search by patients..."
+            onChange={(e)=>setQuery(e.target.value)}
             style={{ fontSize: "12px", color: "#4f5867", outlineStyle: "none" }}
           />
         </div>

@@ -1,10 +1,10 @@
-import Department from "@/component/custom/department";
-import Image from "next/image";
+import Body from "@/component/custom/body";
+
 
 export default function Home() {
   return (
-    <main className="min-h-screen p-10 ">
-      <Department/>
+    <main className="min-h-screen">
+      <Body />
     </main>
   );
 }
