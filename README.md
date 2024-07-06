@@ -10,6 +10,13 @@ After creating a context object, I wrapped the components that need access to th
 
 To consume the context in other components. I used the "useContext" hook from React.
 
+I created a select dropdown where users can filter from the catalog using the three list of suppliers 
+- FragranceX
+- FragranceNet
+- Morris Costumes
+
+I implemented a search feature on the Navbar where users can also search using any keyword from the catalog.
+
 ## Technologies Used
 
 - Next.js
