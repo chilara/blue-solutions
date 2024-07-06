@@ -8,7 +8,8 @@ export const ApiProvider = ({ children }) => {
     const [query, setQuery] = useState("");
     const [value, setValue] = useState("FragranceX");
     const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+    
   
     const debouncedSearch = useDebouncedValue(query, 2000);
     const baseUrl = process.env.NEXT_PUBLIC_REACT_APP_BASE_URL;
@@ -20,20 +21,21 @@ export const ApiProvider = ({ children }) => {
         const allList = await fetch(url);
         const response = await allList.json();
         console.log(response);
-        setData(response);
+        setData(response); 
+      
       } catch (error) {
         console.log(error);
       } finally {
         setLoading(false);
       }
-    },[value, debouncedSearch]);
+    },[value, debouncedSearch,]);
 
 
     useEffect(() => {
       fetchData();
     }, [fetchData]);
-    
-  return <ApiContext.Provider value={{data, loading, query, setQuery, value, setValue,  }}>{children}</ApiContext.Provider>;
+
+  return <ApiContext.Provider value={{ data, loading, query, setQuery, value, setValue,  }}>{children}</ApiContext.Provider>;
 };
 
 

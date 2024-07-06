@@ -20,6 +20,7 @@ I implemented a search feature on the Navbar where users can also search using a
 ## Technologies Used
 
 - Next.js
+- Tailwind CSS
 - React Context API
 - Chakra UI
 - Git

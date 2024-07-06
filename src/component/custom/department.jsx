@@ -5,22 +5,12 @@ import Image from "next/image";
 import { ApiContext } from "@/context/apiContext";
 
 const Department = () => {
-
   const { data, loading, value, setValue } = useContext(ApiContext);
+
   return (
-    <div className="flex flex-col gap-4 p-10" style={{ padding: "2.5rem" }}>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "2rem",
-          paddingLeft: "3rem",
-          paddingRight: "3rem",
-        }}
-      >
-        <p className="">Department List</p>
+    <div className="flex flex-col gap-4 p-10">
+      <div className="w-full flex justify-between items-center  gap-4 mb-8 md:px-12 ">
+        <p className="font-medium">Department List</p>
         <select
           name="value"
           value={value}
@@ -30,138 +20,36 @@ const Department = () => {
           id=""
           style={{
             border: "1px solid var(--Border-bd-dark, #DADAE7)",
-            padding: "8px 20px",
-            borderRadius: "8px",
-            display: "flex",
-            gap: "5px",
-            width: "264px",
-            display: "flex",
             outlineStyle: "none",
           }}
+          className="w-100% px-5 py-2 rounded-lg flex gap-1"
         >
           <option value="FragranceX">FragranceX</option>
           <option value="FragranceNet">FragranceNet</option>
           <option value="Morris Costumes">Morris Costumes</option>
         </select>
       </div>
-      <div
-        className="flex justify-between bg-[#F0F4FE]"
-        style={{
-          backgroundColor: "#F0F4FE",
-          padding: "15px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <div style={{ display: "flex", gap: "10px", width: "6%" }}>
+      <div className="flex justify-between bg-[#F0F4FE] items-center p-4 ">
+        <div className="flex gap-2 w-[6%]">
           <input type="checkbox" style={{ width: "15px", height: "15px" }} />
-          <p style={{ fontSize: "12px", color: "#595959", fontWeight: "bold" }}>
-            S/N
-          </p>
+          <p className="text-xs font-bold text-[#595959]">S/N</p>
         </div>
-        <p
-          style={{
-            fontSize: "12px",
-            color: "#595959",
-            fontWeight: "bold",
-            marginLeft: "-10px",
-            width: "8%",
-          }}
-        >
+        <p className="text-xs font-bold text-[#595959] ml-[-10px] w-[8%]">
           Image
         </p>
-        <p
-          style={{
-            fontSize: "12px",
-            color: "#595959",
-            fontWeight: "bold",
-            width: "10%",
-          }}
-        >
-          SKU
-        </p>
-        <p
-          style={{
-            fontSize: "12px",
-            color: "#595959",
-            fontWeight: "bold",
-            width: "10%",
-          }}
-        >
-          Name
-        </p>
-        <p
-          style={{
-            fontSize: "12px",
-            color: "#595959",
-            fontWeight: "bold",
-            width: "10%",
-          }}
-        >
-          Title
-        </p>
-        <p
-          style={{
-            fontSize: "12px",
-            color: "#595959",
-            fontWeight: "bold",
-            width: "10%",
-          }}
-        >
-          Description
-        </p>
-        <p
-          style={{
-            fontSize: "12px",
-            color: "#595959",
-            fontWeight: "bold",
-            width: "10%",
-          }}
-        >
-          Brand
-        </p>
-        <p
-          style={{
-            fontSize: "12px",
-            color: "#595959",
-            fontWeight: "bold",
-            width: "10%",
-          }}
-        >
-          Cost Price
-        </p>
-        <p
-          style={{
-            fontSize: "12px",
-            color: "#595959",
-            fontWeight: "bold",
-            width: "10%",
-          }}
-        >
-          Quality
-        </p>
-        <p
-          style={{
-            fontSize: "12px",
-            color: "#595959",
-            fontWeight: "bold",
-            width: "10%",
-          }}
-        >
-          Size
-        </p>
+        <p className="text-xs font-bold text-[#595959] w-[10%]">SKU</p>
+        <p className="text-xs font-bold text-[#595959] w-[10%]">Name</p>
+        <p className="text-xs font-bold text-[#595959] w-[10%]">Title</p>
+        <p className="text-xs font-bold text-[#595959] w-[10%]">Description</p>
+        <p className="text-xs font-bold text-[#595959] w-[10%]">Brand</p>
+        <p className="text-xs font-bold text-[#595959] w-[10%]">Cost Price</p>
+        <p className="text-xs font-bold text-[#595959] w-[10%]">Quality</p>
+        <p className="text-xs font-bold text-[#595959] w-[10%]">Size</p>
       </div>
       <div
+        className="bg-white mt-4 px-4 rounded-2xl h-fit mb-16"
         style={{
-          backgroundColor: "#fff",
-          marginTop: "1rem",
           padding: "12px 24px 24px 24px 24px",
-          paddingLeft: "1rem",
-          paddingRight: "1rem",
-          borderRadius: "14px",
-          height: "fit-content",
-          marginBottom: "5rem",
         }}
       >
         {loading ? (
@@ -174,17 +62,8 @@ const Department = () => {
           />
         ) : (
           <div>
-            {data.length == 0 ? (
-              <div
-                className="flex flex-col items-center p-12 mt-14"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  marginTop: "5rem",
-                  padding: "3rem",
-                }}
-              >
+            {data?.length == 0 ? (
+              <div className="flex flex-col items-center p-12 mt-20">
                 <Image
                   src="/empty-pack.svg"
                   alt="This represents no data found"
@@ -197,28 +76,19 @@ const Department = () => {
               data.map((item, index) => (
                 <div
                   key={index}
+                  className="flex justify-between items-center"
                   style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
                     boxShadow: "0px 1px 0px 0px #EDEDF2",
                     padding: "20px 0",
                   }}
                 >
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: "9px",
-                      alignItems: "center",
-                      width: "5%",
-                    }}
-                  >
+                  <div className="flex gap-2 items-center w-[5%]">
                     <input
                       type="checkbox"
                       style={{ width: "15px", height: "15px" }}
                     />
                     <p
-                      className="text-xml font-semibold mb-2"
+                      className="text-xml font-semibold"
                       style={{ fontSize: "12px" }}
                     >
                       {index + 1}.
@@ -291,6 +161,7 @@ const Department = () => {
           </div>
         )}
       </div>
+     
     </div>
   );
 };

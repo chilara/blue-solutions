@@ -9,7 +9,7 @@ const Body = () => {
     useContext(ApiContext);
 
   return (
-    <div>
+    <div >
       <Navbar query={query} setQuery={setQuery} />
       <Department
         data={data}
